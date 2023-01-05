@@ -32,7 +32,7 @@ function main() {
         // If the input is invalid, repeat the loop without playing
         let human_choice = valid_input.indexOf(human_choice_raw.toLowerCase());
         if (human_choice < 0 || human_choice > valid_input.length){
-            alert('please only input "' + valid_input[0] + '" or "' + valid_input[1] + '" or "' + valid_input[2] + '".')
+            alert('please only input "' + valid_input[0] + '", "' + valid_input[1] + '" or "' + valid_input[2] + '".')
             continue;
         }
         // The new score is the result of the game
