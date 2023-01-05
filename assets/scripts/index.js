@@ -42,11 +42,10 @@ function main() {
         loops++;
         // Every 10 games output the summary of wins/draws/losses
         if ((loops % 10) === 0 ) {
-            alert( "You have played " + loops + " game(s), with " + score[2] + " win(s), " + score[0] + " draw(s), and " + score[1] + " loss(es).");
+            alert( "You have played " + loops + " game(s).\n" + score[2] + " win(s).\n" + score[0] + " draw(s)\n" + score[1] + " loss(es).");
         }
     }
+    alert( "You have played " + loops + " game(s).\n" + score[2] + " win(s).\n" + score[0] + " draw(s)\n" + score[1] + " loss(es).");
 }
 // Start the game
 main();
-
-
