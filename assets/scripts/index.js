@@ -17,7 +17,7 @@ function game(score, human_choice) {
 // Main function that runs the game loop
 function main() {
     // Possible inputs (all lower, as toLower is used).
-    let valid_input = ['r', 'p', 's']
+    let valid_input = ['r', 'p', 's'];
     // The games score board.
     let score = [0, 0, 0];
     // Count of the number of games.
@@ -25,7 +25,7 @@ function main() {
     // This is an infinite loop so you can continue to play until feed up.
     while (true) {
         // Ask the user for a choice.
-        let human_choice_raw = prompt('r(ock), p(aper), s(cissors)?');
+        let human_choice_raw = prompt('Choose r(ock), p(aper), s(cissors)?');
         // If the user presses cancel, close the game.
         if (human_choice_raw === null) {
             break;
@@ -33,7 +33,7 @@ function main() {
         // If the input is invalid, repeat the loop without playing
         let human_choice = valid_input.indexOf(human_choice_raw.toLowerCase());
         if (human_choice < 0 || human_choice > valid_input.length){
-            alert('please only input "' + valid_input[0] + '", "' + valid_input[1] + '" or "' + valid_input[2] + '".')
+            alert('please only input "' + valid_input[0] + '", "' + valid_input[1] + '" or "' + valid_input[2] + '".');
             continue;
         }
         // The new score is the result of the game
@@ -42,11 +42,11 @@ function main() {
         loops++;
         // Every 10 games output the summary of wins/draws/losses
         if ((loops % 10) === 0 ) {
-            alert( "You have played " + loops + " game(s), with " + score[2] + " win(s), " + score[0] + " draw(s), and " + score[1] + " loss(es).")
+            alert( "You have played " + loops + " game(s), with " + score[2] + " win(s), " + score[0] + " draw(s), and " + score[1] + " loss(es).");
         }
     }
 }
 // Start the game
-main()
+main();
 
 
