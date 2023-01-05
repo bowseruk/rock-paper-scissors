@@ -1,4 +1,5 @@
 
+// Function takes score board and the choice
 function game(score, human_choice) {
     // These are the labels for the moves.
     let moves = ["Rock", "Paper", "Scissors"];
@@ -13,7 +14,7 @@ function game(score, human_choice) {
     // Return the score for the next game.
     return score;
 }
-
+// Main function that runs the game loop
 function main() {
     // Possible inputs (all lower, as toLower is used).
     let valid_input = ['r', 'p', 's']
