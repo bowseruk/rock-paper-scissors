@@ -1,16 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Rock, Paper, Scissors, Shoot</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
-    <header>
-        <h1>Rock, Paper, Scissors</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Rock, Paper, Scissors</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aboutTheTax">Scoreboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#playersSalaries">Play with Alerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#taxValues">Play with Buttons</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="container-fluid bg-light p-4">
+        <h1 class="display-4">Rock, Paper, Scissors</h1>
     </header>
+    <main class="container-fluid bg-light p-8">
+        <section class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
+                        <h2>Scoreboard</h2>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <th>Games</th>
+                                <td id="games">0</td>
+                                <td id="gamesPCT"></td>
+                            </tr>
+                            <tr>
+                                <th>Wins</th>
+                                <td id="wins">0</td>
+                                <td id="winsPCT">0%</td>
+                            </tr>
+                            <tr>
+                                <th>Draws</th>
+                                <td id="draws">0</td>
+                                <td id="drawsPCT">0%</td>
+                            </tr>
+                            <tr>
+                                <th>Losses</th>
+                                <td id="losses">0</td>
+                                <td id="lossesPCT">0%</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn" onclick="updateScoreboard([0,0,0])">Reset Score</button>
+                    </div>
+
+                </article>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
+                        <h2>Play with alerts</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Press this button to play using alerts and prompts.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn" onclick="playAlert()">Alert Version</button>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
+                        <h2>Play with buttons</h2>
+                    </div>
+                    <div class="card-body">
+                        <label id="status"></label>
+                    </div>
+                    <div class="card-footer">
+                        <button id="Rock" type="button" class="btn" onclick="game(Score, 0)">Rock</button>
+                        <button id="Paper" type="button" class="btn" onclick="game(Score, 1)">Paper</button>
+                        <button id="Scissors" type="button" class="btn" onclick="game(Score, 2)">Scissors</button>
+                    </div>
+
+                </article>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
+                        <h2>Play with input</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Press this button to play using alerts and prompts.</p>
+                    </div>
+                    <div class="card-footer">
+                        <input id="inputGame" type="text" onkeyup="playInput()">
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
+                        <h2>Play with keyboard</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Use the r, p and s key while focused on this card</p>
+                        <label id="status"></label>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn" onclick="playKeyboard()">Keyboard Version</button>
+
+                    </div>
+
+                </article>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
+                        <h2>Settings</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Alert outcome</h3>
+                        <input type="radio" id="alertOutcomeTrue" name="alertOutcome" value="true">
+                        <label for="alertOutcomeTrue">Yes</label><br>
+                        <input type="radio" id="alertOutcomeFalse" name="alertOutcome" value="false">
+                        <label for="alertOutcomeFalse">No</label><br>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn">Keyboard Version</button>
+
+                    </div>
+
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid justify-content-center">
+                <a href="https://github.com/bowseruk" class="navbar-brand">&copy; Copyright Adam Bolsover 2023</a>
+            </div>
+        </nav>
+    </footer>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
     <!-- Logic for the game -->
     <script src="assets/scripts/index.js"></script>
 </body>
+
 </html>
