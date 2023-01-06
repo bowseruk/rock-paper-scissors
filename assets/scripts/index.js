@@ -1,5 +1,6 @@
 var Score = [0, 0, 0];
 var AnnounceAlert = true;
+var AnnounceConsole = true;
 var SummaryAlertCount = 10;
 
 // Function takes score board and the choice
@@ -21,8 +22,15 @@ function game(score, human_choice) {
 // This function announces the results of the game
 function gameOutcome(human_choice, computer_choice, outcome, occassions_of_outcome) {
     message = "You have " + outcome + ' the game.\n You have ' + outcome + ' '+ occassions_of_outcome + ' time(s).\n You have chosen ' + human_choice + '.\n The computer has chosen ' + computer_choice + '.';
+    // Update the page 
+
+    // Alert the message if the setting is on
     if (AnnounceAlert) {
         alert(message);
+    }
+    // Update the console log
+    if (AnnounceConsole) {
+        console.log(message);
     }
 }
 // This function updates the scoreboard and announces it based on the setting
