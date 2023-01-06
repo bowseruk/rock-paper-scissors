@@ -4,7 +4,7 @@ var AnnounceConsole = true;
 var SummaryAlertCount = 10;
 
 // Function takes score board and the choice
-function game(score, human_choice) {
+function game(human_choice) {
     // These are the labels for the moves.
     let moves = ["Rock", "Paper", "Scissors"];
     // These are the possible outcomes.
@@ -12,16 +12,16 @@ function game(score, human_choice) {
     // The computer decides the offset of the choice.
     let computer_choice_offset = Math.floor(Math.random() * moves.length);
     // The offset of the choice determines if it won or not, so increase by the offset between guesses.
-    score[computer_choice_offset]++;
+    Score[computer_choice_offset]++;
     // Work out the computers choice from the offset chosen and the human choice. Also present a description of the round.
-    gameOutcome(moves[human_choice], moves[((computer_choice_offset + human_choice) % 3)], score_label[computer_choice_offset], score[computer_choice_offset])
+    gameOutcome(moves[human_choice], moves[((computer_choice_offset + human_choice) % 3)], score_label[computer_choice_offset], Score[computer_choice_offset])
     // Return the score for the next game.
-    updateScoreboard(score)
+    updateScoreboard(false)
     // return score;
 }
 // This function announces the results of the game
 function gameOutcome(human_choice, computer_choice, outcome, occassions_of_outcome) {
-    message = "You have " + outcome + ' the game.\n You have ' + outcome + ' '+ occassions_of_outcome + ' time(s).\n You have chosen ' + human_choice + '.\n The computer has chosen ' + computer_choice + '.';
+    message = "You have " + outcome + ' the game.\nYou have ' + outcome + ' '+ occassions_of_outcome + ' time(s).\nYou have chosen ' + human_choice + '.\nThe computer has chosen ' + computer_choice + '.';
     // Update the page 
 
     // Alert the message if the setting is on
@@ -34,24 +34,26 @@ function gameOutcome(human_choice, computer_choice, outcome, occassions_of_outco
     }
 }
 // This function updates the scoreboard and announces it based on the setting
-function updateScoreboard(score) {
-    Score = score;
+function updateScoreboard(reset) {
+    if (reset) {
+        Score = [0,0,0]
+    }
     // Number of games is the total number of wins, lossses and draws
-    let games = score[0] + score[1] + score[2]
+    let games = Score[0] + Score[1] + Score[2]
     // If alerts are on, and it is enough games have been played
     if ((games % SummaryAlertCount === 0) && (SummaryAlertCount > 0) && (games > 0)) {
         // Score alert
-        alert("You have played " + games + " game(s).\n" + score[2] + " win(s).\n" + score[0] + " draw(s)\n" + score[1] + " loss(es).");
+        alert("You have played " + games + " game(s).\n" + Score[2] + " win(s).\n" + Score[0] + " draw(s)\n" + Score[1] + " loss(es).");
     }
     // Update the scoreboard on the page
     document.getElementById('games').innerHTML = games
-    document.getElementById('wins').innerHTML = score[2];
-    document.getElementById('draws').innerHTML = score[0];
-    document.getElementById('losses').innerHTML = score[1];
+    document.getElementById('wins').innerHTML = Score[2];
+    document.getElementById('draws').innerHTML = Score[0];
+    document.getElementById('losses').innerHTML = Score[1];
     if (games > 0) {
-        document.getElementById('winsPCT').innerHTML = Math.floor((score[2] * 100) / games) + '%';
-        document.getElementById('drawsPCT').innerHTML = Math.floor((score[0] * 100) / games) + '%';
-        document.getElementById('lossesPCT').innerHTML = Math.floor((score[1] * 100) / games) + '%';
+        document.getElementById('winsPCT').innerHTML = Math.floor((Score[2] * 100) / games) + '%';
+        document.getElementById('drawsPCT').innerHTML = Math.floor((Score[0] * 100) / games) + '%';
+        document.getElementById('lossesPCT').innerHTML = Math.floor((Score[1] * 100) / games) + '%';
     } else {
         document.getElementById('winsPCT').innerHTML = '0%';
         document.getElementById('drawsPCT').innerHTML = '0%';
@@ -70,7 +72,7 @@ function playInput() {
         return;
     }
     // Play the game using the user choice
-    game(Score, choice);
+    game(choice);
 }
 // Function if playing using keyboard presses
 function playKeyboard() {
@@ -78,15 +80,15 @@ function playKeyboard() {
         switch (event.keyCode) {
             // r button for rock
             case 82:
-                game(Score, 0);
+                game(0);
                 break;
             // p button for paper
             case 80:
-                game(Score, 1);
+                game(1);
                 break;
             // s button for scissors
             case 83:
-                game(Score, 2);
+                game(2);
                 break;
             case 27:
                 alert("Released keyboard");
@@ -113,6 +115,6 @@ function playAlert() {
             continue;
         }
         // The new score is the result of the game
-        game(Score, human_choice);
+        game(human_choice);
     }
 }
