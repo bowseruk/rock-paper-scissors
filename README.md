@@ -1,4 +1,4 @@
-# Bootcamp Mini Project - Rock, Paper, Scissors
+# Bootcamp Mini Project / Odin Project - Rock, Paper, Scissors
 
 ## Description 
 
@@ -26,7 +26,7 @@ The website can be viewed at [https://bowseruk.github.io/rock-paper-scissors/](h
 
 ## Credits
 
-This site was based on a project by edX Boot Camps LLC.
+This site was based on a project by edX Boot Camps LLC, and also on a project by [The Odin Project](https://www.theodinproject.com/).
 
 [W3School](https://www.w3schools.com/) was used as a reference for elements to use and good practice.
 
