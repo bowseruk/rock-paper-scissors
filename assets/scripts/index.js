@@ -36,8 +36,6 @@ function setMessageTypes(){
 }
 // This function announces the results of the game
 function sendMessage(message) {
-    // Update the page 
-    document.getElementById("notification").innerHTML = message;
     // Alert the message if the setting is on
     if (AnnounceAlert) {
         alert(message);
@@ -46,6 +44,11 @@ function sendMessage(message) {
     if (AnnounceConsole) {
         console.log(message);
     }
+    htmlMessage = message.replaceAll("Rock", '<i class="fa-regular fa-hand-back-fist"></i>Rock');
+    htmlMessage = htmlMessage.replaceAll("Paper", '<i class="fa-regular fa-hand"></i>Paper');
+    htmlMessage = htmlMessage.replaceAll("Scissors", '<i class="fa-regular fa-hand-scissors"></i>Scissors');
+    // Update the page 
+    document.getElementById("notification").innerHTML = htmlMessage;
 }
 // This function updates the scoreboard and announces it based on the setting
 function updateScoreboard(reset) {
@@ -91,6 +94,7 @@ function playInput() {
 }
 // Function if playing using keyboard presses
 function playKeyboard() {
+    sendMessage("Started keyboard control.");
     document.onkeyup = function (event) {
         switch (event.keyCode) {
             // r button for rock
@@ -106,7 +110,7 @@ function playKeyboard() {
                 game(2);
                 break;
             case 27:
-                alert("Released keyboard");
+                sendMessage("Released keyboard control.");
                 document.onkeyup = null;
                 return false;
         }
@@ -126,7 +130,7 @@ function playAlert() {
         // If the input is invalid, repeat the loop without playing
         let human_choice = valid_input.indexOf(human_choice_raw.toLowerCase());
         if (human_choice < 0 || human_choice > valid_input.length) {
-            alert('please only input "' + valid_input[0] + '", "' + valid_input[1] + '" or "' + valid_input[2] + '".');
+            alert(`please only input "${valid_input[0]}", "${valid_input[1]}" or "${valid_input[2]}".`);
             continue;
         }
         // The new score is the result of the game

@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors, Shoot</title>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/0dd9fad87f.js" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -73,9 +75,9 @@
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionGame">
                                 <div class="accordion-body">
-                                    <p>Press the play with alerts button to play using alerts and prompts. Press cancel
+                                    <p>Press the play with alerts button to play using alerts and prompts. Enter r for Rock, p for Paper or s for Scissors. Press cancel
                                         on the prompt to stop playing with this control.</p>
-                                    <button type="button" class="btn" onclick="playAlert()">Alert Version</button>
+                                    <button type="button" class="btn btn-primary" onclick="playAlert()">Alert Version</button>
                                 </div>
                             </div>
                         </div>
@@ -90,9 +92,9 @@
                                 data-bs-parent="#accordionGame">
                                 <div class="accordion-body">
                                     <p>Press the Rock, Paper or Scissors button to play a round.</p>
-                                    <button id="Rock" type="button" class="btn" onclick="game(0)">Rock</button>
-                                    <button id="Paper" type="button" class="btn" onclick="game(1)">Paper</button>
-                                    <button id="Scissors" type="button" class="btn" onclick="game(2)">Scissors</button>
+                                    <button id="Rock" type="button" class="btn btn-primary" onclick="game(0)"><i class="fa-regular fa-hand-back-fist"></i>Rock</button>
+                                    <button id="Paper" type="button" class="btn btn-primary" onclick="game(1)"><i class="fa-regular fa-hand"></i>Paper</button>
+                                    <button id="Scissors" type="button" class="btn btn-primary" onclick="game(2)"><i class="fa-regular fa-hand-scissors"></i>Scissors</button>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +124,7 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>Play by pressing the button below, then typing either r for Rock, p for Paper or s for Scissors into the input box below. Press esc to release the keyboard.</p>
-                                    <button type="button" class="btn" onclick="playKeyboard()">Keyboard Version</button>
+                                    <button type="button" class="btn btn-primary" onclick="playKeyboard()">Keyboard Version</button>
                                 </div>
                             </div>
                         </div>
@@ -138,23 +140,23 @@
                         <h2>Scoreboard</h2>
                     </div>
                     <div class="card-body">
-                        <table>
+                        <table class="table">
                             <tr>
                                 <th>Games</th>
                                 <td id="games">0</td>
                                 <td id="gamesPCT"></td>
                             </tr>
-                            <tr>
+                            <tr class="table-success">
                                 <th>Wins</th>
                                 <td id="wins">0</td>
                                 <td id="winsPCT">0%</td>
                             </tr>
-                            <tr>
+                            <tr class="table-warning">
                                 <th>Draws</th>
                                 <td id="draws">0</td>
                                 <td id="drawsPCT">0%</td>
                             </tr>
-                            <tr>
+                            <tr class="table-danger">
                                 <th>Losses</th>
                                 <td id="losses">0</td>
                                 <td id="lossesPCT">0%</td>
@@ -163,7 +165,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn" onclick="updateScoreboard(true)">Reset Score</button>
+                        <button type="button" class="btn btn-primary" onclick="updateScoreboard(true)">Reset Score</button>
                     </div>
 
                 </article>
@@ -174,14 +176,17 @@
                         <h2>Settings</h2>
                     </div>
                     <div class="card-body">
-                        <h3>Alert outcome</h3>
+                        <h3>Alert messages</h3>
+                        <p>Turn on or off sending messages using javascript alert.</p>
                         <input class="form-check-input" type="radio" id="alertOutcomeTrue" name="alertOutcome"
                             value="true" checked onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeTrue">Yes</label><br>
                         <input class="form-check-input" type="radio" id="alertOutcomeFalse" name="alertOutcome"
                             value="false" onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeFalse">No</label><br>
-                        <h3>Console outcome</h3>
+                        <br>
+                        <h3>Console messages</h3>
+                        <p>Turn on or off sending messages to the console.</p>
                         <input class="form-check-input" type="radio" id="consoleOutcomeTrue" name="consoleOutcome"
                             value="true" checked onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeTrue">Yes</label><br>
