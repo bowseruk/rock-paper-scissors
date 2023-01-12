@@ -14,16 +14,30 @@ function game(human_choice) {
     // The offset of the choice determines if it won or not, so increase by the offset between guesses.
     Score[computer_choice_offset]++;
     // Work out the computers choice from the offset chosen and the human choice. Also present a description of the round.
-    gameOutcome(moves[human_choice], moves[((computer_choice_offset + human_choice) % 3)], score_label[computer_choice_offset], Score[computer_choice_offset])
+    sendMessage(`You have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} time(s).\nYou have chosen ${moves[human_choice]}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]}.`);
     // Return the score for the next game.
     updateScoreboard(false)
     // return score;
 }
+// This function sets which message types to use
+function setMessageTypes(){
+    // 
+    if (document.querySelector('input[name="alertOutcome"]:checked').value === "true") {
+        AnnounceAlert = true;
+    } else {
+        AnnounceAlert = false;
+    }
+    //
+    if (document.querySelector('input[name="consoleOutcome"]:checked').value === "true") {
+        AnnounceConsole = true;
+    } else {
+        AnnounceConsole = false;
+    }
+}
 // This function announces the results of the game
-function gameOutcome(human_choice, computer_choice, outcome, occassions_of_outcome) {
-    message = "You have " + outcome + ' the game.\nYou have ' + outcome + ' '+ occassions_of_outcome + ' time(s).\nYou have chosen ' + human_choice + '.\nThe computer has chosen ' + computer_choice + '.';
+function sendMessage(message) {
     // Update the page 
-
+    document.getElementById("notification").innerHTML = message;
     // Alert the message if the setting is on
     if (AnnounceAlert) {
         alert(message);
@@ -43,7 +57,7 @@ function updateScoreboard(reset) {
     // If alerts are on, and it is enough games have been played
     if ((games % SummaryAlertCount === 0) && (SummaryAlertCount > 0) && (games > 0)) {
         // Score alert
-        alert("You have played " + games + " game(s).\n" + Score[2] + " win(s).\n" + Score[0] + " draw(s)\n" + Score[1] + " loss(es).");
+        sendMessage(`You have played ${games} game(s).\n${Score[2]} win(s).\n${Score[0]} draw(s)\n${Score[1]} loss(es).`);
     }
     // Update the scoreboard on the page
     document.getElementById('games').innerHTML = games

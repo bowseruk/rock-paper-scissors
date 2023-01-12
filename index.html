@@ -44,37 +44,14 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <article class="card">
                     <div class="card-header">
-                        <h2>Scoreboard</h2>
+                        <h2>Notifications</h2>
                     </div>
                     <div class="card-body">
-                        <table>
-                            <tr>
-                                <th>Games</th>
-                                <td id="games">0</td>
-                                <td id="gamesPCT"></td>
-                            </tr>
-                            <tr>
-                                <th>Wins</th>
-                                <td id="wins">0</td>
-                                <td id="winsPCT">0%</td>
-                            </tr>
-                            <tr>
-                                <th>Draws</th>
-                                <td id="draws">0</td>
-                                <td id="drawsPCT">0%</td>
-                            </tr>
-                            <tr>
-                                <th>Losses</th>
-                                <td id="losses">0</td>
-                                <td id="lossesPCT">0%</td>
-                            </tr>
-
-                        </table>
+                        <p id="notification"></p>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn" onclick="updateScoreboard(true)">Reset Score</button>
+                        <button type="button" class="btn" onclick="playAlert()">Alert Version</button>
                     </div>
-
                 </article>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -138,14 +115,55 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <article class="card">
                     <div class="card-header">
+                        <h2>Scoreboard</h2>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <th>Games</th>
+                                <td id="games">0</td>
+                                <td id="gamesPCT"></td>
+                            </tr>
+                            <tr>
+                                <th>Wins</th>
+                                <td id="wins">0</td>
+                                <td id="winsPCT">0%</td>
+                            </tr>
+                            <tr>
+                                <th>Draws</th>
+                                <td id="draws">0</td>
+                                <td id="drawsPCT">0%</td>
+                            </tr>
+                            <tr>
+                                <th>Losses</th>
+                                <td id="losses">0</td>
+                                <td id="lossesPCT">0%</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn" onclick="updateScoreboard(true)">Reset Score</button>
+                    </div>
+
+                </article>
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <article class="card">
+                    <div class="card-header">
                         <h2>Settings</h2>
                     </div>
                     <div class="card-body">
                         <h3>Alert outcome</h3>
-                        <input type="radio" id="alertOutcomeTrue" name="alertOutcome" value="true">
-                        <label for="alertOutcomeTrue">Yes</label><br>
-                        <input type="radio" id="alertOutcomeFalse" name="alertOutcome" value="false">
-                        <label for="alertOutcomeFalse">No</label><br>
+                        <input class="form-check-input" type="radio" id="alertOutcomeTrue" name="alertOutcome" value="true" checked onclick="setMessageTypes()">
+                        <label class="form-check-label" for="alertOutcomeTrue">Yes</label><br>
+                        <input class="form-check-input" type="radio" id="alertOutcomeFalse" name="alertOutcome" value="false" onclick="setMessageTypes()">
+                        <label class="form-check-label" for="alertOutcomeFalse">No</label><br>
+                        <h3>Console outcome</h3>
+                        <input class="form-check-input" type="radio" id="consoleOutcomeTrue" name="consoleOutcome" value="true" checked onclick="setMessageTypes()">
+                        <label class="form-check-label" for="alertOutcomeTrue">Yes</label><br>
+                        <input class="form-check-input" type="radio" id="consoleOutcomeFalse" name="consoleOutcome" value="false" onclick="setMessageTypes()">
+                        <label class="form-check-label" for="alertOutcomeFalse">No</label><br>
                     </div>
                     <div class="card-footer">
                         <button type="button" class="btn">Keyboard Version</button>
