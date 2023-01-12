@@ -51,6 +51,7 @@ function sendMessage(message) {
 function updateScoreboard(reset) {
     if (reset) {
         Score = [0,0,0]
+        sendMessage('Score reset!')
     }
     // Number of games is the total number of wins, lossses and draws
     let games = Score[0] + Score[1] + Score[2]
