@@ -24,13 +24,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#aboutTheTax">Scoreboard</a>
+                        <a class="nav-link" href="#notifications">Notifications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#playersSalaries">Play with Alerts</a>
+                        <a class="nav-link" href="#play">Play</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#taxValues">Play with Buttons</a>
+                        <a class="nav-link" href="#scoreboard">Scoreboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#settings">Settings</a>
                     </li>
                 </ul>
             </div>
@@ -40,9 +43,9 @@
         <h1 class="display-4">Rock, Paper, Scissors</h1>
     </header>
     <main class="container-fluid bg-light p-8">
-        <section class="row">
+        <section class="row g-2">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
+                <article id="notifications" class="card">
                     <div class="card-header">
                         <h2>Notifications</h2>
                     </div>
@@ -50,70 +53,87 @@
                         <p id="notification"></p>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn" onclick="playAlert()">Alert Version</button>
                     </div>
                 </article>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
+                <article id="play" class="card">
                     <div class="card-header">
-                        <h2>Play with alerts</h2>
+                        <h2>Play the Game</h2>
                     </div>
                     <div class="card-body">
-                        <p>Press this button to play using alerts and prompts.</p>
+                    <div class="accordion" id="accordionGame">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Play with alerts
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionGame">
+                                <div class="accordion-body">
+                                    <p>Press the play with alerts button to play using alerts and prompts. Press cancel
+                                        on the prompt to stop playing with this control.</p>
+                                    <button type="button" class="btn" onclick="playAlert()">Alert Version</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Play with buttons
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionGame">
+                                <div class="accordion-body">
+                                    <p>Press the Rock, Paper or Scissors button to play a round.</p>
+                                    <button id="Rock" type="button" class="btn" onclick="game(0)">Rock</button>
+                                    <button id="Paper" type="button" class="btn" onclick="game(1)">Paper</button>
+                                    <button id="Scissors" type="button" class="btn" onclick="game(2)">Scissors</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Play with input
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionGame">
+                                <div class="accordion-body">
+                                    <p>Play by inputting r for Rock, p for Paper or s for Scissors into the input box below.</p>
+                                    <input id="inputGame" type="text" onkeyup="playInput()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Play with keyboard
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Play by pressing the button below, then typing either r for Rock, p for Paper or s for Scissors into the input box below. Press esc to release the keyboard.</p>
+                                    <button type="button" class="btn" onclick="playKeyboard()">Keyboard Version</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn" onclick="playAlert()">Alert Version</button>
-                    </div>
+                </div>
+                <div class="card-footer">
+                </div>
                 </article>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
-                    <div class="card-header">
-                        <h2>Play with buttons</h2>
-                    </div>
-                    <div class="card-body">
-                        <label id="status"></label>
-                    </div>
-                    <div class="card-footer">
-                        <button id="Rock" type="button" class="btn" onclick="game(0)">Rock</button>
-                        <button id="Paper" type="button" class="btn" onclick="game(1)">Paper</button>
-                        <button id="Scissors" type="button" class="btn" onclick="game(2)">Scissors</button>
-                    </div>
-
-                </article>
-            </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
-                    <div class="card-header">
-                        <h2>Play with input</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>Press this button to play using alerts and prompts.</p>
-                    </div>
-                    <div class="card-footer">
-                        <input id="inputGame" type="text" onkeyup="playInput()">
-                    </div>
-                </article>
-            </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
-                    <div class="card-header">
-                        <h2>Play with keyboard</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>Use the r, p and s key while focused on this card</p>
-                        <label id="status"></label>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn" onclick="playKeyboard()">Keyboard Version</button>
-
-                    </div>
-
-                </article>
-            </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
+                <article id="scoreboard" class="card">
                     <div class="card-header">
                         <h2>Scoreboard</h2>
                     </div>
@@ -149,25 +169,27 @@
                 </article>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <article class="card">
+                <article id="settings" class="card">
                     <div class="card-header">
                         <h2>Settings</h2>
                     </div>
                     <div class="card-body">
                         <h3>Alert outcome</h3>
-                        <input class="form-check-input" type="radio" id="alertOutcomeTrue" name="alertOutcome" value="true" checked onclick="setMessageTypes()">
+                        <input class="form-check-input" type="radio" id="alertOutcomeTrue" name="alertOutcome"
+                            value="true" checked onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeTrue">Yes</label><br>
-                        <input class="form-check-input" type="radio" id="alertOutcomeFalse" name="alertOutcome" value="false" onclick="setMessageTypes()">
+                        <input class="form-check-input" type="radio" id="alertOutcomeFalse" name="alertOutcome"
+                            value="false" onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeFalse">No</label><br>
                         <h3>Console outcome</h3>
-                        <input class="form-check-input" type="radio" id="consoleOutcomeTrue" name="consoleOutcome" value="true" checked onclick="setMessageTypes()">
+                        <input class="form-check-input" type="radio" id="consoleOutcomeTrue" name="consoleOutcome"
+                            value="true" checked onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeTrue">Yes</label><br>
-                        <input class="form-check-input" type="radio" id="consoleOutcomeFalse" name="consoleOutcome" value="false" onclick="setMessageTypes()">
+                        <input class="form-check-input" type="radio" id="consoleOutcomeFalse" name="consoleOutcome"
+                            value="false" onclick="setMessageTypes()">
                         <label class="form-check-label" for="alertOutcomeFalse">No</label><br>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn">Keyboard Version</button>
-
                     </div>
 
                 </article>

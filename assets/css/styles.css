@@ -1,0 +1,11 @@
+main {
+    padding-bottom: 50px;
+}
+
+.card-footer {
+    min-height: 30px;
+}
+
+.card-body {
+    min-height: 300px;;
+}
