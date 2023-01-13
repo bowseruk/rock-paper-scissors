@@ -19,7 +19,7 @@ function game(human_choice) {
     HumanMoves[human_choice]++;
     ComputerMoves[((computer_choice_offset + human_choice) % 3)]++;
     // Work out the computers choice from the offset chosen and the human choice. Also present a description of the round.
-    sendMessage(`-*- ${moves[human_choice]} vs ${moves[((computer_choice_offset + human_choice) % 3)]} -*-\nYou have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} time(s).\nYou have chosen ${moves[human_choice]}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]}.`);
+    sendMessage(`-*- ${moves[human_choice]} vs ${moves[((computer_choice_offset + human_choice) % 3)]} -*-\nYou have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} ${(Score[computer_choice_offset] === 1) ? "time" : "times"}.\nYou have chosen ${moves[human_choice]} ${HumanMoves[human_choice]} ${(HumanMoves[human_choice] === 1) ? "time" : "times"}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]} ${ComputerMoves[((computer_choice_offset + human_choice) % 3)]} ${(ComputerMoves[((computer_choice_offset + human_choice) % 3)] === 1) ? "time" : "times"}.`);
     // Return the score for the next game.
     updateScoreboard(false)
     // return score;
@@ -70,7 +70,7 @@ function updateScoreboard(reset) {
     // If alerts are on, and it is enough games have been played
     if ((games % SummaryAlertCount === 0) && (SummaryAlertCount > 0) && (games > 0)) {
         // Score alert
-        sendMessage(`You have played ${games} game(s).\n${Score[2]} win(s).\n${Score[0]} draw(s)\n${Score[1]} loss(es).`);
+        sendMessage(`You have played ${games} ${(games === 1) ? "game" : "games"}.\n${Score[2]} ${(Score[2] === 1) ? "win" : "wins"}.\n${Score[0]} ${(Score[0] === 1) ? "draw" : "draws"}.\n${Score[1]} ${(Score[1] === 1) ? "loss" : "losses"}.`);
     }
     // Update the scoreboard on the page
     document.getElementById('games').innerHTML = games
