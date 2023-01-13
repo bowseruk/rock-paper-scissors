@@ -286,6 +286,19 @@
                                 value="false" onclick="setMessageTypes()">
                             <label class="form-check-label" for="alertOutcomeFalse">No</label><br>
                             </li>
+                            <li class="list-group-item">
+                                <h3>Summary messages</h3>
+                                <p>Change the frequency or turn off the summary message. Set to 0 to turn it off, or to the number of turns before you see the summary message.</p>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="summaryMessageLabel">Turns</span>
+                                    <div class="form-floating">
+                                        <input id="summaryMessage" type="number" min=0 class="form-control"
+                                            placeholder="Turns Between Summary Message" aria-label="Input"
+                                            aria-describedby="summaryMessageLabel" onInput="setMessageTypes()" value=10>
+                                        <label for="summaryMessage">Turns Between Summary Message</label>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-footer">

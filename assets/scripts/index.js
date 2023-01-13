@@ -26,17 +26,23 @@ function game(human_choice) {
 }
 // This function sets which message types to use
 function setMessageTypes(){
-    // 
+    // set the alert option flag
     if (document.querySelector('input[name="alertOutcome"]:checked').value === "true") {
         AnnounceAlert = true;
     } else {
         AnnounceAlert = false;
     }
-    //
+    // set the console option flag
     if (document.querySelector('input[name="consoleOutcome"]:checked').value === "true") {
         AnnounceConsole = true;
     } else {
         AnnounceConsole = false;
+    }
+    //  Check the frequency of summary messages
+    if ((parseInt(document.getElementById("summaryMessage").value) >= 0) && (typeof parseInt(document.getElementById("summaryMessage").value) === "number")) {
+        SummaryAlertCount = parseInt(document.getElementById("summaryMessage").value);
+    } else {
+        document.getElementById("summaryMessage").value = SummaryAlertCount;
     }
 }
 // This function announces the results of the game
