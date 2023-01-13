@@ -109,7 +109,13 @@
                                 data-bs-parent="#accordionGame">
                                 <div class="accordion-body">
                                     <p>Play by inputting r for Rock, p for Paper or s for Scissors into the input box below.</p>
-                                    <input id="inputGame" type="text" onkeyup="playInput()">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGameLabel">Input</span>
+                                        <div class="form-floating">
+                                        <input id="inputGame" type="text" class="form-control" placeholder="Press r(ock), p(aper) or s(cissors)" aria-label="Input" aria-describedby="inputGameLabel" onkeyup="playInput()">
+                                        <label for="inputGame">Press r(ock), p(aper) or s(cissors)</label>
+                                    </div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
