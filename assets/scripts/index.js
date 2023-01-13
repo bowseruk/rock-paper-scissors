@@ -173,3 +173,14 @@ function playAlert() {
         game(human_choice);
     }
 }
+
+// Change the color scheme depending on dark mode detection
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // dark mode
+    document.querySelector("html").setAttribute("data-bs-theme", "dark");
+    document.querySelector("body").className = ""
+} else {
+    // Standard mode
+    document.querySelector("html").setAttribute("data-bs-theme", "light");
+    document.querySelector("body").className = "bg-light";
+}
