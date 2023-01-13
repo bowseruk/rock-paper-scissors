@@ -36,6 +36,8 @@ The docs for [Bootstrap v5](https://getbootstrap.com/docs/5.0/getting-started/in
 
 [Stack Overflow](https://stackoverflow.com/) always seems to have the answer to a problem that occurs.
 
+[MDN](https://developer.mozilla.org/en-US/) is a very comprehensive and useful resource.
+
 
 ## License
 
