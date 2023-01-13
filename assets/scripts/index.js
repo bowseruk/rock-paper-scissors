@@ -1,4 +1,6 @@
 var Score = [0, 0, 0];
+var HumanMoves = [0, 0, 0];
+var ComputerMoves = [0, 0, 0];
 var AnnounceAlert = true;
 var AnnounceConsole = true;
 var SummaryAlertCount = 10;
@@ -13,6 +15,9 @@ function game(human_choice) {
     let computer_choice_offset = Math.floor(Math.random() * moves.length);
     // The offset of the choice determines if it won or not, so increase by the offset between guesses.
     Score[computer_choice_offset]++;
+    // Update how many times each option has been chosen
+    HumanMoves[human_choice]++;
+    ComputerMoves[((computer_choice_offset + human_choice) % 3)]++;
     // Work out the computers choice from the offset chosen and the human choice. Also present a description of the round.
     sendMessage(`-*- ${moves[human_choice]} vs ${moves[((computer_choice_offset + human_choice) % 3)]} -*-\nYou have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} time(s).\nYou have chosen ${moves[human_choice]}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]}.`);
     // Return the score for the next game.
@@ -55,7 +60,9 @@ function sendMessage(message) {
 // This function updates the scoreboard and announces it based on the setting
 function updateScoreboard(reset) {
     if (reset) {
-        Score = [0,0,0]
+        Score = [0,0,0];
+        HumanMoves = [0, 0, 0];
+        ComputerMoves = [0, 0, 0];
         sendMessage('Score reset!')
     }
     // Number of games is the total number of wins, lossses and draws
@@ -70,14 +77,41 @@ function updateScoreboard(reset) {
     document.getElementById('wins').innerHTML = Score[2];
     document.getElementById('draws').innerHTML = Score[0];
     document.getElementById('losses').innerHTML = Score[1];
+    document.getElementById('rocks').innerHTML = HumanMoves[0];
+    document.getElementById('papers').innerHTML = HumanMoves[1];
+    document.getElementById('scissors').innerHTML = HumanMoves[2];
+    document.getElementById('rocksComputer').innerHTML = ComputerMoves[0];
+    document.getElementById('papersComputer').innerHTML = ComputerMoves[1];
+    document.getElementById('scissorsComputer').innerHTML = ComputerMoves[2];
+    document.getElementById('rocksTotal').innerHTML = (HumanMoves[0] + ComputerMoves[0]);
+    document.getElementById('papersTotal').innerHTML = (HumanMoves[1] + ComputerMoves[1]);
+    document.getElementById('scissorsTotal').innerHTML = (HumanMoves[2] + ComputerMoves[2]);
     if (games > 0) {
         document.getElementById('winsPCT').innerHTML = Math.floor((Score[2] * 100) / games) + '%';
         document.getElementById('drawsPCT').innerHTML = Math.floor((Score[0] * 100) / games) + '%';
         document.getElementById('lossesPCT').innerHTML = Math.floor((Score[1] * 100) / games) + '%';
+        document.getElementById('rocksPCT').innerHTML = Math.floor((HumanMoves[0] * 100) / games) + '%';
+        document.getElementById('papersPCT').innerHTML = Math.floor((HumanMoves[1] * 100) / games) + '%';
+        document.getElementById('scissorsPCT').innerHTML = Math.floor((HumanMoves[2] * 100) / games) + '%';
+        document.getElementById('rocksPCTComputer').innerHTML = Math.floor((ComputerMoves[0] * 100) / games) + '%';
+        document.getElementById('papersPCTComputer').innerHTML = Math.floor((ComputerMoves[1] * 100) / games) + '%';
+        document.getElementById('scissorsPCTComputer').innerHTML = Math.floor((ComputerMoves[2] * 100) / games) + '%';
+        document.getElementById('rocksPCTTotal').innerHTML = Math.floor(((HumanMoves[0] + ComputerMoves[0]) * 100) / (games*2)) + '%';
+        document.getElementById('papersPCTTotal').innerHTML = Math.floor(((HumanMoves[1] + ComputerMoves[1]) * 100) / (games*2)) + '%';
+        document.getElementById('scissorsPCTTotal').innerHTML = Math.floor(((HumanMoves[2] + ComputerMoves[2]) * 100) / (games*2)) + '%';
     } else {
         document.getElementById('winsPCT').innerHTML = '0%';
         document.getElementById('drawsPCT').innerHTML = '0%';
         document.getElementById('lossesPCT').innerHTML = '0%';
+        document.getElementById('rocksPCT').innerHTML = '0%';
+        document.getElementById('papersPCT').innerHTML = '0%';
+        document.getElementById('scissorsPCT').innerHTML = '0%';
+        document.getElementById('rocksPCTComputer').innerHTML = '0%';
+        document.getElementById('papersPCTComputer').innerHTML = '0%';
+        document.getElementById('scissorsPCTComputer').innerHTML = '0%';
+        document.getElementById('rocksPCTTotal').innerHTML = '0%';
+        document.getElementById('papersPCTTotal').innerHTML = '0%';
+        document.getElementById('scissorsPCTTotal').innerHTML = '0%';
     }
 }
 // Function if playing using the input
