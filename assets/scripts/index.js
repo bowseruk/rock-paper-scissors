@@ -18,6 +18,8 @@ function game(human_choice) {
     // Update how many times each option has been chosen
     HumanMoves[human_choice]++;
     ComputerMoves[((computer_choice_offset + human_choice) % 3)]++;
+    // Change favicon
+    document.getElementById('favicon').setAttribute("href", `assets/images/${moves[human_choice].toLowerCase()}.ico`)
     // Work out the computers choice from the offset chosen and the human choice. Also present a description of the round.
     sendMessage(`-*- ${moves[human_choice]} vs ${moves[((computer_choice_offset + human_choice) % 3)]} -*-\nYou have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} ${(Score[computer_choice_offset] === 1) ? "time" : "times"}.\nYou have chosen ${moves[human_choice]} ${HumanMoves[human_choice]} ${(HumanMoves[human_choice] === 1) ? "time" : "times"}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]} ${ComputerMoves[((computer_choice_offset + human_choice) % 3)]} ${(ComputerMoves[((computer_choice_offset + human_choice) % 3)] === 1) ? "time" : "times"}.`);
     // Return the score for the next game.
@@ -118,6 +120,7 @@ function updateScoreboard(reset) {
         document.getElementById('rocksPCTTotal').innerHTML = '0%';
         document.getElementById('papersPCTTotal').innerHTML = '0%';
         document.getElementById('scissorsPCTTotal').innerHTML = '0%';
+        document.getElementById('favicon').setAttribute("href", `assets/images/default.ico`)
     }
 }
 // Function if playing using the input
