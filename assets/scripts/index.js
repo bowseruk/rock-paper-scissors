@@ -14,7 +14,7 @@ function game(human_choice) {
     // The offset of the choice determines if it won or not, so increase by the offset between guesses.
     Score[computer_choice_offset]++;
     // Work out the computers choice from the offset chosen and the human choice. Also present a description of the round.
-    sendMessage(`</p><h3>${moves[human_choice]} vs ${moves[((computer_choice_offset + human_choice) % 3)]}</h3><p>You have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} time(s).\nYou have chosen ${moves[human_choice]}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]}.`);
+    sendMessage(`-*- ${moves[human_choice]} vs ${moves[((computer_choice_offset + human_choice) % 3)]} -*-\nYou have ${score_label[computer_choice_offset].toLowerCase()} the game.\nYou have ${score_label[computer_choice_offset].toLowerCase()} ${Score[computer_choice_offset]} time(s).\nYou have chosen ${moves[human_choice]}.\nThe computer has chosen ${moves[((computer_choice_offset + human_choice) % 3)]}.`);
     // Return the score for the next game.
     updateScoreboard(false)
     // return score;
@@ -44,7 +44,9 @@ function sendMessage(message) {
     if (AnnounceConsole) {
         console.log(message);
     }
-    htmlMessage = message.replaceAll("Rock", '<i class="fa-regular fa-hand-back-fist"></i>Rock');
+    htmlMessage = message.replace("-*-", "<h3>");
+    htmlMessage = htmlMessage.replace("-*-", "</h3>");
+    htmlMessage = htmlMessage.replaceAll("Rock", '<i class="fa-regular fa-hand-back-fist"></i>Rock');
     htmlMessage = htmlMessage.replaceAll("Paper", '<i class="fa-regular fa-hand"></i>Paper');
     htmlMessage = htmlMessage.replaceAll("Scissors", '<i class="fa-regular fa-hand-scissors"></i>Scissors');
     // Update the page 
